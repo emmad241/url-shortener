@@ -3,35 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0b52fc2b47.js" crossorigin="anonymous"></script>
+    <title>URL Shortener</title>
+    <style>
+        body, html {
+            height: 100%;
+        }
+        i {
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        i:hover {
+            color: blue;
+        }
+        #shortenedLink {
+            text-decoration: none;
+        }
+    </style>
 </head>
-<body>
-    <div class="container my-5">
+<body class="d-flex justify-content-center align-items-center">
+    <div class="text-center">
         <h1>URL Shortener</h1>
-        <form action="/shortUrls" method="POST" class="my-4">
+        <form id="urlForm" class="my-3">
             <div class="input-group">
-                <input type="url" name="fullUrl" id="fullUrl" placeholder="Enter URL" class="form-control" aria-label="Enter URL" required>
+                <input type="url" name="fullUrl" id="fullUrl" placeholder="Enter URL" class="form-control" required>
                 <button type="submit" class="btn btn-success">Shorten</button>
             </div>
         </form>
 
-        <table class="table table-striped table-responsive">
-            <thead>
-                <tr>
-                    <th>Full URL</th>
-                    <th>Short URL</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% shortUrls.forEach((shortUrl) => { %>
-                    <tr>
-                        <td><%= shortUrl.full %></td>
-                        <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
-                    </tr>
-                <% }); %>
-            </tbody>
-        </table>
+        <div id="shortUrlDisplay" class="mt-3" style="display: none;">
+            <h5>Your shortened URL:</h5>
+            <a id="shortenedLink" href="#" target="_blank"></a>
+            <i class="fa-regular fa-clipboard fa-lg" onclick="copyToClipboard()"></i>
+        </div>
     </div>
+
+    <script src="../js/script.js"></script>
 </body>
 </html>
